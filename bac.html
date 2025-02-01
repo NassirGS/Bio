@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bacteria Quiz</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f0f8ff; }
+        h1 { text-align: center; color: #5e3360; }
+        .question { margin-bottom: 20px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .options label { display: block; margin-bottom: 8px; cursor: pointer;}
+        button { padding: 10px 15px; background-color: #5e3360; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px; display: block; margin-left: auto; margin-right: auto; }
+        button:hover { background-color: #431f45;}
+        .correct-answer { color: green; font-weight: bold;}
+        .wrong-answer { color: red; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>Bacteria Quiz</h1>
+    <div id="quiz-container"></div>
+    <button onclick="showResults()">Show Results</button>
+    <a href="index.html"><button ">main Page</button></a>
+    <div id="score"></div>
+
+    <script>
+      const questions = [
+            {
+                question: "What are the two kingdoms of bacteria?",
+                options: ["Eubacteria and Protista", "Eubacteria and Archaebacteria", "Archaebacteria and Fungi", "Protista and Fungi"],
+                correctAnswer: "Eubacteria and Archaebacteria"
+            },
+            {
+                question: "Which kingdom of bacteria is considered the oldest?",
+                options: ["Eubacteria", "Archaebacteria", "Protista", "Fungi"],
+                correctAnswer: "Archaebacteria"
+            },
+            {
+                question: "What does it mean for bacteria to be unicellular?",
+                options: ["They have multiple cells", "They consist of a single cell", "They have no cells", "They form colonies"],
+                correctAnswer: "They consist of a single cell"
+            },
+             {
+                 question: "What does 'prokaryotic' mean?",
+                 options: ["Having a nucleus", "Lacking a nucleus", "Having multiple nuclei", "Having a cell wall"],
+                 correctAnswer: "Lacking a nucleus"
+             },
+              {
+                  question: "What is the average number of bacteria per square centimeter of skin?",
+                  options: ["100", "1,000", "10,000", "100,000"],
+                  correctAnswer: "100,000"
+              },
+              {
+                  question: "How many bacteria are typically found in a single teaspoon of topsoil?",
+                  options: ["One million", "One billion", "One trillion", "Ten thousand"],
+                 correctAnswer: "One billion"
+               },
+               {
+                  question: "What does it mean for bacteria to be aerobic?",
+                  options: ["They require carbon dioxide to survive", "They require oxygen to survive", "They do not require oxygen to survive", "They do not require carbon dioxide to survive"],
+                  correctAnswer: "They require oxygen to survive"
+               },
+               {
+                    question: "What does it mean for bacteria to be anaerobic?",
+                    options: ["They require oxygen to survive", "They do not require oxygen to survive", "They require carbon dioxide to survive", "They do not require carbon dioxide to survive"],
+                    correctAnswer: "They do not require oxygen to survive"
+               },
+               {
+                    question: "Are most bacteria harmful or harmless?",
+                    options: ["Harmful", "Harmless", "Both harmful and harmless", "Mostly harmful"],
+                    correctAnswer: "Harmless"
+              },
+               {
+                 question: "What is the shape of the main DNA of bacteria?",
+                    options: ["Linear", "Circular", "Spiral", "Random"],
+                    correctAnswer: "Circular"
+               },
+               {
+                   question: "What are tiny circular pieces of DNA found in bacteria called?",
+                   options: ["Chromosomes", "Plasmids", "Ribosomes", "Endospores"],
+                   correctAnswer: "Plasmids"
+                },
+               {
+                     question: "How do bacteria reproduce asexually?",
+                    options: ["Conjugation", "Meiosis", "Binary fission", "Mitosis"],
+                    correctAnswer: "Binary fission"
+                },
+                {
+                    question: "How do bacteria reproduce sexually?",
+                     options: ["Binary fission", "Conjugation", "Meiosis", "Mitosis"],
+                    correctAnswer: "Conjugation"
+                 },
+                 {
+                     question: "What do bacteria exchange during sexual reproduction?",
+                    options: ["Chromosomal DNA", "Plasmid DNA", "RNA", "Protein"],
+                    correctAnswer: "Plasmid DNA"
+                },
+                {
+                     question: "How do bacteria become antibiotic resistant?",
+                      options: ["Through binary fission", "Through conjugation", "Through photosynthesis", "Through endospore formation"],
+                      correctAnswer: "Through conjugation"
+                 },
+                 {
+                      question: "What are bacteria cell walls primarily made of?",
+                      options: ["Cellulose", "Chitin", "Peptidoglycan", "Lipopolysaccharide"],
+                       correctAnswer: "Peptidoglycan"
+                  },
+                  {
+                      question: "What is the outer membrane on some bacteria cell walls made of?",
+                      options: ["Peptidoglycan", "Cellulose", "Lipopolysaccharide", "Chitin"],
+                      correctAnswer: "Lipopolysaccharide"
+                  },
+                 {
+                       question: "What is the gelatinous layer surrounding the cell wall in some bacteria called?",
+                        options: ["Fimbriae", "Capsule", "Pilus", "Flagella"],
+                        correctAnswer: "Capsule"
+                  },
+                  {
+                       question: "What are thick-walled structures formed by some bacteria under harsh conditions?",
+                       options: ["Plasmids", "Capsules", "Endospores", "Fimbriae"],
+                       correctAnswer: "Endospores"
+                   },
+                   {
+                       question: "What is an example of a bacteria that causes illness that forms endospores?",
+                       options: ["E. Coli", "Botulism", "Streptococcus", "Staphylococcus"],
+                       correctAnswer: "Botulism"
+                   },
+                    {
+                       question: "What are flagella used for in bacteria?",
+                        options: ["Attachment", "Reproduction", "Locomotion", "Protection"],
+                        correctAnswer: "Locomotion"
+                    },
+                    {
+                        question: "What are pili used for in bacteria?",
+                         options: ["Locomotion", "Reproduction", "Attachment", "Protection"],
+                         correctAnswer: "Attachment"
+                    },
+                    {
+                         question: "What is the rod-shaped bacterial shape called?",
+                         options: ["Coccus", "Spirillum", "Bacillus", "Pilus"],
+                         correctAnswer: "Bacillus"
+                    },
+                    {
+                         question: "What is the sphere-shaped bacterial shape called?",
+                         options: ["Bacillus", "Spirillum", "Coccus", "Pilus"],
+                        correctAnswer: "Coccus"
+                    },
+                    {
+                        question: "What is the spiral-shaped bacterial shape called?",
+                         options: ["Bacillus", "Spirillum", "Coccus", "Pilus"],
+                         correctAnswer: "Spirillum"
+                    },
+                    {
+                         question: "What color does Gram-positive bacteria stain?",
+                         options: ["Pink", "Purple", "Green", "Orange"],
+                         correctAnswer: "Purple"
+                    },
+                    {
+                        question: "What color does Gram-negative bacteria stain?",
+                        options: ["Pink", "Purple", "Green", "Orange"],
+                         correctAnswer: "Pink"
+                    },
+                     {
+                        question: "Which type of bacteria tend to respond to penicillin?",
+                         options: ["Gram-negative", "Gram-positive", "Both", "Neither"],
+                        correctAnswer: "Gram-positive"
+                    },
+                     {
+                        question: "What do antibiotics generally do to bacterial cells?",
+                        options: ["Prevent cell wall formation", "Break cell membranes", "Disrupt chemical processes", "All of the above"],
+                        correctAnswer: "All of the above"
+                     },
+                    {
+                         question: "Can antibiotics treat viral infections?",
+                         options: ["Yes", "No", "Sometimes", "Only in severe cases"],
+                         correctAnswer: "No"
+                    },
+                     {
+                         question: "What are the three types of bacteria based on how they obtain energy?",
+                         options: ["Aerobic, anaerobic, and facultative", "Gram-positive, Gram-negative, and Acid-fast", "Heterotrophs, photosynthetic, and chemoautotrophs", "Bacillus, coccus, and spirillum"],
+                         correctAnswer: "Heterotrophs, photosynthetic, and chemoautotrophs"
+                     },
+                      {
+                          question: "What is the function of decomposers?",
+                         options: ["Make their own food", "Break down organic material", "Cause disease", "Fix nitrogen"],
+                          correctAnswer: "Break down organic material"
+                       },
+                        {
+                          question: "What are pathogens?",
+                          options: ["Beneficial bacteria", "Disease-causing bacteria", "Nitrogen-fixing bacteria", "Decomposers"],
+                          correctAnswer: "Disease-causing bacteria"
+                       },
+                      {
+                          question: "What is the name of the bacteria that fixes nitrogen?",
+                          options: ["Nitrobacter", "Rhizobium", "Nitrosomonas", "Cyanobacteria"],
+                          correctAnswer: "Rhizobium"
+                      },
+                       {
+                           question: "Where are nitrogen-fixing bacteria typically found?",
+                           options: ["In the soil", "In nodules of legumes", "In the oceans", "In the air"],
+                           correctAnswer: "In nodules of legumes"
+                        },
+                        {
+                            question: "What do nitrogen-fixing bacteria convert atmospheric nitrogen into?",
+                            options: ["Nitrates", "Nitrites", "Ammonia", "Oxygen"],
+                            correctAnswer: "Ammonia"
+                         },
+                         {
+                              question: "What type of bacteria does this quiz mention that is considered a decomposer?",
+                              options: ["Streptococcus", "E Coli", "Rhizobium", "All bacteria are decomposers"],
+                              correctAnswer: "All bacteria are decomposers"
+                           },
+                           {
+                              question: "What are some examples of bacteria that live inside of humans and animals?",
+                              options: ["Streptococcus", "E Coli", "Rhizobium", "All of the above"],
+                              correctAnswer: "All of the above"
+                           },
+                           {
+                              question: "Which of the following bacteria is associated with strep throat?",
+                               options: ["Staphylococcus", "Streptococcus", "E. Coli", "Rhizobium"],
+                               correctAnswer: "Streptococcus"
+                            },
+                            {
+                                 question: "Which of the following bacteria is associated with Impetigo?",
+                                   options: ["Staphylococcus", "Streptococcus", "E. Coli", "Rhizobium"],
+                                   correctAnswer: "Staphylococcus"
+                             },
+                              {
+                                question: "Which of the following bacteria is associated with Necrotizing Fascitis?",
+                                  options: ["Staphylococcus", "Streptococcus", "E. Coli", "Rhizobium"],
+                                  correctAnswer: "Streptococcus"
+                              },
+                             {
+                                  question: "Which of the following bacteria is associated with cellulitis?",
+                                   options: ["Staphylococcus", "Streptococcus", "E. Coli", "Both Staphylococcus and Streptococcus"],
+                                   correctAnswer: "Both Staphylococcus and Streptococcus"
+                               },
+                            {
+                                question: "What does photosynthetic bacteria use to produce food?",
+                               options: ["Chemosynthesis", "Sun's energy", "Decomposing matter", "Nitrogen fixation"],
+                               correctAnswer: "Sun's energy"
+                             },
+                            {
+                                question: "What is the process of photosynthesis?",
+                                 options: ["Bacteria breaking down dead organisms.", "Bacteria making food from sun light.", "Bacteria creating nitrogen.", "Bacteria forming spores."],
+                                 correctAnswer: "Bacteria making food from sun light."
+                             },
+                            {
+                                question: "Which of the following bacteria uses the process of photosynthesis?",
+                                options: ["Nitrosomonas", "Rhizobium", "Cyanobacteria", "Streptococcus"],
+                                 correctAnswer: "Cyanobacteria"
+                             },
+                              {
+                                question: "How do chemoautotrophs obtain energy?",
+                                options: ["By breaking down organic molecules", "By using sunlight", "By removing electrons from inorganic molecules", "By fixing nitrogen"],
+                                 correctAnswer: "By removing electrons from inorganic molecules"
+                               },
+                              {
+                                question: "What is an example of bacteria mentioned that has an important role in nitrification?",
+                                options: ["Cyanobacteria", "Rhizobium", "Nitrobacter and Nitrosomonas", "Staphylococcus"],
+                                correctAnswer: "Nitrobacter and Nitrosomonas"
+                             },
+                              {
+                                  question: "What is nitrification?",
+                                  options: ["Conversion of nitrates to ammonia", "Conversion of ammonia to nitrates", "The process of photosynthesis", "The process of binary fission"],
+                                   correctAnswer: "Conversion of ammonia to nitrates"
+                               },
+                              {
+                                  question: "What is an example of bacteria that has been used to ferment or culture foods for at least 4000 years?",
+                                  options: ["Streptococcus", "Lactic acid bacteria", "Nitrosomonas", "Rhizobium"],
+                                  correctAnswer: "Lactic acid bacteria"
+                               },
+                              {
+                                  question: "What type of bacteria can feed on solid human waste matter?",
+                                  options: ["Lactic acid bacteria", "Nitrosomonas", "Wastewater bacteria", "Rhizobium"],
+                                  correctAnswer: "Wastewater bacteria"
+                               },
+                               {
+                                 question: "What is one thing wastewater bacteria do when they break down organic matter?",
+                                  options: ["They form spores", "They release oxygen", "They release electrons", "They make more organic matter"],
+                                  correctAnswer: "They release electrons"
+                               }
+
+        ];
+
+
+
+        let currentQuestions = [...questions]; // Copy of original questions
+
+      function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+        }
+
+
+
+      function createQuiz() {
+            shuffleArray(currentQuestions); // Shuffle the copied array
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = ''; // Clear existing content
+            currentQuestions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+                questionDiv.innerHTML = `<p>${index + 1}. ${question.question}</p>`;
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('options');
+
+                question.options.forEach(option => {
+                    optionsDiv.innerHTML += `
+                        <label>
+                            <input type="radio" name="question${index}" value="${option}">
+                            ${option}
+                        </label>
+                    `;
+                });
+                questionDiv.appendChild(optionsDiv);
+                quizContainer.appendChild(questionDiv);
+            });
+
+        }
+
+        function showResults() {
+          let score = 0;
+          currentQuestions.forEach((question, index) => {
+            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+            const questionDiv = document.querySelectorAll('.question')[index];
+
+              if(selectedOption) {
+              const userAnswer = selectedOption.value;
+              const correctAnswer = question.correctAnswer;
+              const optionsLabels = questionDiv.querySelectorAll('label');
+
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    questionDiv.classList.add('correct-answer');
+                    selectedOption.parentElement.classList.add('correct-answer');
+                } else {
+                    questionDiv.classList.add('wrong-answer');
+                    selectedOption.parentElement.classList.add('wrong-answer');
+
+                    optionsLabels.forEach(label => {
+                    if(label.textContent.trim() === correctAnswer){
+                       label.classList.add('correct-answer');
+                      }
+
+                    });
+
+
+                }
+               } else {
+                const optionsLabels = questionDiv.querySelectorAll('label');
+
+                optionsLabels.forEach(label => {
+                 if(label.textContent.trim() === question.correctAnswer){
+                    label.classList.add('correct-answer');
+                    }
+
+                });
+
+
+              questionDiv.classList.add('wrong-answer');
+
+              }
+            });
+
+           document.getElementById('score').innerHTML = `Your Score: ${score} out of ${currentQuestions.length}`;
+            }
+
+            createQuiz(); // Initialize the quiz when the page loads
+
+    </script>
+</body>
+</html>

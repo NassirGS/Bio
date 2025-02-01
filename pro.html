@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protista Quiz</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f0f8ff; }
+        h1 { text-align: center; color: #5e3360; }
+        .question { margin-bottom: 20px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .options label { display: block; margin-bottom: 8px; cursor: pointer;}
+        button { padding: 10px 15px; background-color: #5e3360; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px; display: block; margin-left: auto; margin-right: auto; }
+        button:hover { background-color: #431f45;}
+        .correct-answer { color: green; font-weight: bold;}
+        .wrong-answer { color: red; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>Protista Quiz</h1>
+    <div id="quiz-container"></div>
+    <button onclick="showResults()">Show Results</button>
+     <a href="index.html"><button ">main Page</button></a>
+    <div id="score"></div>
+
+    <script>
+      const questions = [
+          {
+                question: "What is a general characteristic of protists?",
+                options: ["They are prokaryotes", "They are all multicellular", "They are eukaryotes that cannot be classified as a plant, animal, or fungus", "They all have cell walls"],
+                correctAnswer: "They are eukaryotes that cannot be classified as a plant, animal, or fungus"
+            },
+            {
+                question: "What is one characteristic all protist have?",
+                options: ["They all have cell walls.", "They all have a nucleus and membrane-bound organelles.", "They are all autotrophic.", "They are all multicellular."],
+                correctAnswer: "They all have a nucleus and membrane-bound organelles."
+            },
+            {
+                question: "Which is NOT a way protist can be classified?",
+                options: ["By the way they Obtain Nutrition.", "By how they move.", "By how they reproduce.", "By their size."],
+                correctAnswer: "By how they reproduce."
+            },
+            {
+                question: "What is one way protist obtain nutrition?",
+                options: ["All are autotrophic.", "All are heterotrophic.", "Some are autotrophic and some are heterotrophic.", "All are decomposers."],
+                correctAnswer: "Some are autotrophic and some are heterotrophic."
+            },
+              {
+                  question: "What is the most common cell structure for protists?",
+                  options: ["Multicellular", "Unicellular", "Both unicellular and multicellular equally", "They do not have cell structures."],
+                  correctAnswer: "Unicellular"
+              },
+              {
+                question: "What are the three kinds of protists based on nutrition?",
+                    options: ["Sarcodines, Sporozoans, and Algae", "Animal-like, Plant-like, and Fungus-like", "Cilia, Flagella, and Pseudopod", "Red, Brown, and Green Algae"],
+                    correctAnswer: "Animal-like, Plant-like, and Fungus-like"
+               },
+               {
+                    question: "What is a main characteristic of animal-like protists?",
+                    options: ["They are autotrophic", "They are unicellular heterotrophs that can move", "They are multicellular heterotrophs that cannot move", "They are decomposers."],
+                    correctAnswer: "They are unicellular heterotrophs that can move"
+                },
+                 {
+                    question: "What are some examples of animal-like protists?",
+                    options: ["Algae and Fungus", "Sarcodines and Sporozoans", "Red, Brown, and Green Algae", "Phytoplankton and Seaweeds"],
+                    correctAnswer: "Sarcodines and Sporozoans"
+                },
+                 {
+                     question: "What is another name for animal-like protists?",
+                     options: ["Algae", "Protozoans", "Phytoplankton", "Seaweeds"],
+                    correctAnswer: "Protozoans"
+                  },
+                 {
+                     question: "What does Protozoans mean?",
+                    options: ["Second Animals", "First Plants", "First Animals", "Second Plants"],
+                    correctAnswer: "First Animals"
+                 },
+                 {
+                     question: "What mode of nutrition do Protozoans have?",
+                     options: ["Autotrophs", "Heterotrophs", "Both Autotrophs and Heterotrophs", "Decomposers"],
+                    correctAnswer: "Heterotrophs"
+                 },
+                 {
+                     question: "How do Protozoans move?",
+                    options: ["By forming spores", "By the use of Cilia, Flagella or Pseudopod", "By using sunlight", "By external digestion"],
+                    correctAnswer: "By the use of Cilia, Flagella or Pseudopod"
+                },
+                {
+                     question: "What is one main characteristic of Sporozoans?",
+                    options: ["They have cilia", "They move by pseudopod", "They do not move on their own", "They are autotrophic"],
+                    correctAnswer: "They do not move on their own"
+                 },
+                {
+                   question: "What kind of reproduction do Sporozoans use?",
+                   options: ["Asexual only", "Sexual only", "Complex reproduction with both a sexual and asexual phase", "Binary Fission"],
+                    correctAnswer: "Complex reproduction with both a sexual and asexual phase"
+                },
+                {
+                     question: "What is the role or function of Sporozoans?",
+                     options: ["They are helpful decomposers", "They are autotrophic", "They are parasitic", "They form the basis of aquatic food chains"],
+                    correctAnswer: "They are parasitic"
+                },
+                {
+                    question: "What Sporozoan causes Malaria?",
+                     options: ["Amoeba", "Plasmodium", "Phytoplankton", "Seaweed"],
+                    correctAnswer: "Plasmodium"
+                 },
+                 {
+                    question: "What is one main characteristic of plant-like protists?",
+                     options: ["They are unicellular heterotrophs that can move.", "They are all multicellular.", "They are autotrophic.", "They are decomposers."],
+                     correctAnswer: "They are autotrophic."
+                },
+                {
+                     question: "What is another name for plant-like protists?",
+                     options: ["Protozoans", "Algae", "Sporozoans", "Fungi"],
+                    correctAnswer: "Algae"
+                },
+                 {
+                     question: "What do Algae use to make food?",
+                     options: ["By external digestion", "By using Cilia, Flagella or Pseudopod", "Chlorophyll and other accessory pigments", "By decomposing matter"],
+                    correctAnswer: "Chlorophyll and other accessory pigments"
+                 },
+                {
+                     question: "What is the main ecological function of Algae?",
+                     options: ["They decompose organic matter", "They form the base of many aquatic food chains", "They are parasitic", "They are pathogens"],
+                    correctAnswer: "They form the base of many aquatic food chains"
+                 },
+                 {
+                    question: "What is the main function of phytoplankton?",
+                    options: ["They are decomposers", "They are floating photosynthetic organisms", "They are parasites", "They help move other protists"],
+                    correctAnswer: "They are floating photosynthetic organisms"
+                 },
+                 {
+                    question: "What is one characteristic that all multicellular algae have?",
+                    options: ["They are all heterotrophic.", "They are all unicellular.", "They are all classified by color (photosynthetic pigments).", "They are all found in the body."],
+                   correctAnswer: "They are all classified by color (photosynthetic pigments)."
+                },
+                {
+                    question: "What is one example of where you can find multicellular algae?",
+                     options: ["In the air", "In the soil", "In the body", "Seaweeds and kelp"],
+                     correctAnswer: "Seaweeds and kelp"
+                 },
+                {
+                   question: "What is the main function of seaweeds and kelp?",
+                    options: ["They are decomposers", "They cause disease", "They are autotrophic", "They are used in foods"],
+                    correctAnswer: "They are used in foods"
+                 },
+                 {
+                    question: "What are the three kinds of multicellular algae?",
+                    options: ["Sarcodines, Sporozoans, and Algae", "Animal-like, Plant-like, and Fungus-like", "Red, Brown, and Green Algae", "Phytoplankton and Seaweeds"],
+                     correctAnswer: "Red, Brown, and Green Algae"
+                  },
+                  {
+                    question: "What is a main characteristic of fungus-like protists?",
+                    options: ["They are autotrophic", "They are unicellular heterotrophs that can move", "They are multicellular heterotrophs that cannot move", "They are heterotrophic using external digestion to break down dead and decaying organic matter"],
+                    correctAnswer: "They are heterotrophic using external digestion to break down dead and decaying organic matter"
+                },
+                {
+                    question: "What is one characteristic of sarcodina?",
+                    options: ["They are multicellular", "They have a direct life cycle", "They are autotrophic", "They are decomposers"],
+                    correctAnswer: "They have a direct life cycle"
+                },
+                 {
+                     question: "What is the average size of sarcodina (amoeba)?",
+                      options: ["500 microns", "1 to 5 microns", "10 to 52 microns", "1000 to 5000 microns"],
+                     correctAnswer: "10 to 52 microns"
+                  },
+                 {
+                      question: "What is one way you can view sarcodina?",
+                       options: ["With the naked eye", "By smell", "By microscope", "By taste"],
+                       correctAnswer: "By microscope"
+                    },
+                    {
+                      question: "What main ways do sarcodina move?",
+                        options: ["By binary fission", "By the use of pseudopodia, flagella, and cilia", "By external digestion", "By decomposing matter"],
+                         correctAnswer: "By the use of pseudopodia, flagella, and cilia"
+                      },
+                     {
+                        question: "What main processes do sarcodina perform?",
+                        options: ["Photosynthesis", "Nitrogen Fixation", "Metabolic mechanisms", "They form spores"],
+                        correctAnswer: "Metabolic mechanisms"
+                     },
+                     {
+                          question: "Where are sarcodina typically found?",
+                          options: ["They are only found in the soil.", "They are only found in the air.", "They are found in different parts of the body, like intestine, blood, and tissues, and cavities like mouth.", "They are all found in seaweeds."],
+                           correctAnswer: "They are found in different parts of the body, like intestine, blood, and tissues, and cavities like mouth."
+                    },
+                    {
+                          question: "What does pseudopodia mean?",
+                          options: ["False feet", "True feet", "False hair", "True Hair"],
+                          correctAnswer: "False feet"
+                      },
+                   {
+                          question: "Which of the following is NOT a structure of an amoeba?",
+                           options: ["Food vacuole", "Contractile vacuole", "Water vacuole", "Cell membrane"],
+                           correctAnswer: "Cell membrane"
+                     },
+                      {
+                          question: "What is the function of a food vacuole in an amoeba?",
+                           options: ["It stores water.", "It helps with movement.", "It helps with digestion of food.", "It helps with asexual reproduction"],
+                           correctAnswer: "It helps with digestion of food."
+                      },
+                       {
+                          question: "What is the function of a contractile vacuole in an amoeba?",
+                           options: ["It stores water.", "It helps with movement.", "It helps with digestion of food.", "It helps with removing excess water."],
+                           correctAnswer: "It helps with removing excess water."
+                        },
+                        {
+                            question: "What is the function of the water vacuole in an amoeba?",
+                            options: ["It stores water.", "It helps with movement.", "It helps with digestion of food.", "It helps with removing excess water."],
+                             correctAnswer: "It stores water."
+                        },
+                        {
+                            question: "What is the function of pseudopodia in an amoeba?",
+                             options: ["It is a defense mechanism.", "It helps with movement and eating.", "It helps with excretion.", "It is a type of reproduction."],
+                             correctAnswer: "It helps with movement and eating."
+                         },
+                         {
+                             question: "What is plasmagel?",
+                            options: ["The liquid substance of the cytoplasm.", "The gel substance of the cytoplasm", "The external layer of the amoeba", "The internal layer of the amoeba"],
+                             correctAnswer: "The gel substance of the cytoplasm"
+                         },
+                         {
+                             question: "What is plasmasol?",
+                             options: ["The liquid substance of the cytoplasm.", "The gel substance of the cytoplasm", "The external layer of the amoeba", "The internal layer of the amoeba"],
+                             correctAnswer: "The liquid substance of the cytoplasm."
+                         },
+                          {
+                              question: "What is ectoplasm?",
+                             options: ["The liquid substance of the cytoplasm.", "The gel substance of the cytoplasm", "The external layer of the amoeba", "The internal layer of the amoeba"],
+                            correctAnswer: "The external layer of the amoeba"
+                         },
+                          {
+                             question: "What is Uroid?",
+                              options: ["It is the tail of the cell when the amoeba moves", "It is the storage space for water", "It is the space for food digestion.", "It is used for sexual reproduction."],
+                              correctAnswer: "It is the tail of the cell when the amoeba moves"
+                            },
+                           {
+                            question: "What is NOT a way that protists are classified?",
+                             options: ["By the way they Obtain Nutrition.", "By how they move.", "By their size.", "By how they look."],
+                             correctAnswer: "By how they look."
+                            },
+                             {
+                             question: "What does autotrophic mean?",
+                             options: ["They make their own food.", "They consume other organisms.", "They are decomposers.", "They are parasites"],
+                             correctAnswer: "They make their own food."
+                            },
+                              {
+                             question: "What does heterotrophic mean?",
+                             options: ["They make their own food.", "They consume other organisms.", "They are decomposers.", "They are parasites"],
+                              correctAnswer: "They consume other organisms."
+                            },
+                             {
+                                 question: "What does it mean to be parasitic?",
+                                  options: ["To live in harmony with a host.", "To live at the expense of a host.", "To decompose dead matter.", "To produce their own food."],
+                                  correctAnswer: "To live at the expense of a host."
+                            },
+                            {
+                                question: "What does it mean for protist to be a decomposer?",
+                                options: ["They break down dead organic matter.", "They make their own food.", "They obtain food from another organism.", "They are parasitic"],
+                                 correctAnswer: "They break down dead organic matter."
+                            }
+        ];
+
+         let currentQuestions = [...questions]; // Copy of original questions
+
+      function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+        }
+
+      function createQuiz() {
+            shuffleArray(currentQuestions); // Shuffle the copied array
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = ''; // Clear existing content
+            currentQuestions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+                questionDiv.innerHTML = `<p>${index + 1}. ${question.question}</p>`;
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('options');
+
+                question.options.forEach(option => {
+                    optionsDiv.innerHTML += `
+                        <label>
+                            <input type="radio" name="question${index}" value="${option}">
+                            ${option}
+                        </label>
+                    `;
+                });
+                questionDiv.appendChild(optionsDiv);
+                quizContainer.appendChild(questionDiv);
+            });
+
+        }
+
+        function showResults() {
+          let score = 0;
+          currentQuestions.forEach((question, index) => {
+            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+            const questionDiv = document.querySelectorAll('.question')[index];
+
+              if(selectedOption) {
+              const userAnswer = selectedOption.value;
+              const correctAnswer = question.correctAnswer;
+              const optionsLabels = questionDiv.querySelectorAll('label');
+
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    questionDiv.classList.add('correct-answer');
+                    selectedOption.parentElement.classList.add('correct-answer');
+                } else {
+                    questionDiv.classList.add('wrong-answer');
+                    selectedOption.parentElement.classList.add('wrong-answer');
+
+                    optionsLabels.forEach(label => {
+                    if(label.textContent.trim() === correctAnswer){
+                       label.classList.add('correct-answer');
+                      }
+
+                    });
+
+
+                }
+               } else {
+                const optionsLabels = questionDiv.querySelectorAll('label');
+
+                optionsLabels.forEach(label => {
+                 if(label.textContent.trim() === question.correctAnswer){
+                    label.classList.add('correct-answer');
+                    }
+
+                });
+
+
+              questionDiv.classList.add('wrong-answer');
+
+              }
+            });
+
+           document.getElementById('score').innerHTML = `Your Score: ${score} out of ${currentQuestions.length}`;
+            }
+
+            createQuiz(); // Initialize the quiz when the page loads
+
+    </script>
+</body>
+</html>

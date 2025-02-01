@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viruses, Viroids, and Prions Quiz</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f0f8ff; }
+        h1 { text-align: center; color: #5e3360; }
+        .question { margin-bottom: 20px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .options label { display: block; margin-bottom: 8px; cursor: pointer;}
+        button { padding: 10px 15px; background-color: #5e3360; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px; display: block; margin-left: auto; margin-right: auto; }
+        button:hover { background-color: #431f45;}
+        .correct-answer { color: green; font-weight: bold;}
+        .wrong-answer { color: red; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>Viruses, Viroids, and Prions Quiz</h1>
+    <div id="quiz-container"></div>
+    <button onclick="showResults()">Show Results</button>
+     <a href="index.html"><button ">main Page</button></a>
+    <div id="score"></div>
+
+    <script>
+        const questions = [
+            {
+                question: "Are viruses considered living or non-living?",
+                options: ["Living", "Non-living", "Both living and non-living", "Neither living nor non-living"],
+                correctAnswer: "Both living and non-living"
+            },
+             {
+                question: "What is a main reason viruses cannot maintain a constant internal state?",
+                options: ["They do not have ribosomes", "They are too large", "They are too small", "They are not made of cells"],
+                correctAnswer: "They are not made of cells"
+            },
+            {
+                question: "What are viruses made of?",
+                options: ["Cells, protein, and DNA", "Protein and DNA/RNA", "Only protein", "Only DNA/RNA"],
+                correctAnswer: "Protein and DNA/RNA"
+            },
+            {
+                question: "What do viruses need to invade in order to reproduce?",
+                options: ["Other viruses", "Living cells", "Non-living cells", "Dead matter"],
+                correctAnswer: "Living cells"
+            },
+             {
+                  question: "What unit are viruses measured in?",
+                   options: ["Micrometers", "Millimeters", "Nanometers", "Centimeters"],
+                  correctAnswer: "Nanometers"
+            },
+             {
+                  question: "When were viruses first able to be viewed?",
+                  options: ["18th century", "19th century", "20th century", "21st century"],
+                  correctAnswer: "20th century"
+            },
+             {
+                   question: "Which is NOT a virus?",
+                    options: ["E. Coli", "Rabies virus", "Ebola virus", "Vaccinia virus"],
+                    correctAnswer: "E. Coli"
+              },
+              {
+                  question: "What is the protein coat of a virus called?",
+                  options: ["Envelope", "Capsid", "Spike", "Nucleic acid core"],
+                  correctAnswer: "Capsid"
+              },
+              {
+                  question: "What does the nucleic acid core of a virus contain?",
+                  options: ["Only DNA", "Only RNA", "Either DNA or RNA", "Proteins and lipids"],
+                   correctAnswer: "Either DNA or RNA"
+             },
+             {
+                  question: "What is the main function of the envelope in some viruses?",
+                  options: ["To attach to a host cell", "To protect the virus", "To help the virus reproduce", "To help with locomotion"],
+                   correctAnswer: "To protect the virus"
+              },
+             {
+                 question: "What are spikes used for in some viruses?",
+                  options: ["To help the virus reproduce", "To help the virus attach to a host cell", "To help the virus move", "To help the virus breakdown dead matter"],
+                 correctAnswer: "To help the virus attach to a host cell"
+              },
+               {
+                  question: "What kind of host cells do most viruses infect?",
+                  options: ["Multiple host cells", "Any host cell", "Only specific host cells", "Non-living cells"],
+                  correctAnswer: "Only specific host cells"
+             },
+            {
+                  question: "What are the subunits of the capsid called?",
+                    options: ["Spikes", "Envelopes", "Capsomeres", "Proteins"],
+                    correctAnswer: "Capsomeres"
+             },
+              {
+                   question: "Outside of host cells, viruses are:",
+                   options: ["Active", "Inactive", "Metabolizing", "Decomposing"],
+                  correctAnswer: "Inactive"
+              },
+              {
+                    question: "What do viruses lack when they are outside of the host cell?",
+                    options: ["DNA or RNA", "Capsid", "Ribosomes and enzymes", "Spikes"],
+                    correctAnswer: "Ribosomes and enzymes"
+               },
+              {
+                    question: "How do viruses use a host cell to reproduce?",
+                    options: ["They use their own ribosomes and enzymes", "They use raw materials and enzymes of the host cell", "They use external digestion", "They use nitrogen fixation"],
+                   correctAnswer: "They use raw materials and enzymes of the host cell"
+               },
+                {
+                   question: "What is one thing viruses cause?",
+                   options: ["Photosynthesis", "Disease", "Decomposition", "Nitrogen fixation"],
+                  correctAnswer: "Disease"
+                 },
+                 {
+                   question: "What is one disease that viruses cause?",
+                    options: ["Malaria", "Strep throat", "Smallpox", "Necrotizing fasciitis"],
+                   correctAnswer: "Smallpox"
+                 },
+                  {
+                   question: "What are some shapes that viruses come in?",
+                    options: ["Helical, rod, and star shaped", "Sphere, cube, and spiral", "Helical, polyhedral, and complex shapes", "Irregular, diamond, and circular"],
+                   correctAnswer: "Helical, polyhedral, and complex shapes"
+                  },
+                 {
+                   question: "What is the shape of the Ebola virus?",
+                   options: ["Polyhedral", "Icosahedral", "Helical", "Complex"],
+                    correctAnswer: "Helical"
+                  },
+                   {
+                     question: "What is the shape of the influenza virus?",
+                     options: ["Polyhedral", "Icosahedral", "Helical", "Complex"],
+                    correctAnswer: "Polyhedral"
+                    },
+                   {
+                       question: "What are viruses that attack bacteria called?",
+                       options: ["Retroviruses", "Phages", "Viroids", "Prions"],
+                       correctAnswer: "Phages"
+                   },
+                  {
+                      question: "What is another name for phages?",
+                       options: ["Retroviruses", "Bacteriophage", "Viroids", "Prions"],
+                       correctAnswer: "Bacteriophage"
+                   },
+                   {
+                      question: "What is one structure a phage has?",
+                       options: ["Cilia", "Flagella", "Tail", "Capsomeres"],
+                       correctAnswer: "Tail"
+                   },
+                    {
+                       question: "What is one specific class of bacteriophages?",
+                        options: ["Retroviruses", "T-phages", "Viroids", "Prions"],
+                        correctAnswer: "T-phages"
+                    },
+                     {
+                        question: "What shape does the head of a T-phage have?",
+                         options: ["Helical", "Polyhedral", "Icosahedral", "Complex"],
+                        correctAnswer: "Icosahedral"
+                    },
+                     {
+                        question: "What kind of DNA does a T-phage have?",
+                        options: ["Single-stranded", "Double-stranded", "Triple-stranded", "None"],
+                        correctAnswer: "Double-stranded"
+                     },
+                    {
+                      question: "What are the most commonly studied T-phages?",
+                       options: ["T1 and T2", "T3 and T4", "T4 and T7", "T5 and T6"],
+                       correctAnswer: "T4 and T7"
+                      },
+                     {
+                        question: "What kind of bacteria do T-phages infect?",
+                         options: ["Streptococcus", "E. Coli", "Staphylococcus", "Lactic acid bacteria"],
+                        correctAnswer: "E. Coli"
+                     },
+                    {
+                        question: "How many spikes does a T-phage have?",
+                         options: ["4", "5", "6", "7"],
+                        correctAnswer: "6"
+                     },
+                      {
+                        question: "What do T-phages inject into a host cell?",
+                         options: ["Protein", "Spikes", "DNA", "Enzymes"],
+                        correctAnswer: "DNA"
+                     },
+                    {
+                       question: "What kind of surfaces does the head of a T-4 bacteriophage have?",
+                         options: ["10 triangular surfaces", "20 triangular surfaces", "30 triangular surfaces", "40 triangular surfaces"],
+                        correctAnswer: "20 triangular surfaces"
+                      },
+                     {
+                         question: "What does the capsid of a T-4 bacteriophage contain?",
+                          options: ["Protein", "RNA", "DNA", "Lipids"],
+                           correctAnswer: "DNA"
+                      },
+                      {
+                         question: "What are the head and tail fibers of a T-4 bacteriophage made of?",
+                           options: ["Lipids", "Proteins", "Carbohydrates", "RNA"],
+                           correctAnswer: "Proteins"
+                        },
+                       {
+                          question: "What does a retrovirus contain?",
+                           options: ["Only DNA", "Only RNA", "Both DNA and RNA", "No nucleic acid"],
+                           correctAnswer: "Only RNA"
+                        },
+                      {
+                          question: "What family do retroviruses belong to?",
+                           options: ["Retroviridae", "Bacteriophage", "Phages", "Viroids"],
+                           correctAnswer: "Retroviridae"
+                        },
+                       {
+                            question: "What special enzyme does a retrovirus contain?",
+                            options: ["Lysozyme", "Reverse Transcriptase", "DNA Polymerase", "RNA Polymerase"],
+                             correctAnswer: "Reverse Transcriptase"
+                         },
+                       {
+                           question: "What does a retrovirus inject when it infects a cell?",
+                            options: ["Only DNA", "Only RNA", "RNA and reverse transcriptase", "Only protein"],
+                            correctAnswer: "RNA and reverse transcriptase"
+                        },
+                         {
+                             question: "What does reverse transcriptase do?",
+                             options: ["Synthesizes RNA from DNA", "Synthesizes DNA from RNA", "Degrades proteins", "Breaks down lipids"],
+                              correctAnswer: "Synthesizes DNA from RNA"
+                         },
+                         {
+                            question: "What is one example of a retrovirus?",
+                             options: ["Ebola", "Measles", "HIV", "Smallpox"],
+                            correctAnswer: "HIV"
+                         },
+                       {
+                            question: "What does HIV cause?",
+                             options: ["AIDS", "Cancer", "The common cold", "The flu"],
+                            correctAnswer: "AIDS"
+                         },
+                         {
+                             question: "What kind of molecule is a viroid?",
+                              options: ["Protein", "DNA", "RNA", "Lipid"],
+                              correctAnswer: "RNA"
+                          },
+                          {
+                               question: "What is NOT a structure of a viroid?",
+                                options: ["Protein coat", "Small", "Circular", "RNA"],
+                                correctAnswer: "Protein coat"
+                           },
+                         {
+                              question: "What do viroids infect?",
+                               options: ["Animals", "Plants", "Bacteria", "Fungi"],
+                               correctAnswer: "Plants"
+                            },
+                           {
+                            question: "What historic event did viroids cause?",
+                            options: ["The great plague", "The potato famine", "The holocaust", "World War 2"],
+                            correctAnswer: "The potato famine"
+                             },
+                          {
+                               question: "What do viroids resemble?",
+                                options: ["Capsomeres", "Introns", "Envelopes", "Spikes"],
+                                correctAnswer: "Introns"
+                            },
+                           {
+                            question: "What are prions?",
+                             options: ["Infectious proteins", "Infectious DNA", "Infectious RNA", "Infectious lipids"],
+                            correctAnswer: "Infectious proteins"
+                             },
+                           {
+                               question: "How do prions cause problems?",
+                                options: ["By degrading host cells", "By changing the shape of normal proteins", "By replicating rapidly", "By causing inflammation"],
+                                correctAnswer: "By changing the shape of normal proteins"
+                            },
+                           {
+                            question: "What do prions NOT have?",
+                             options: ["Protein", "Lipids", "DNA or RNA", "Phospholipids"],
+                             correctAnswer: "DNA or RNA"
+                            },
+                            {
+                                question: "What is one disease prions cause?",
+                                 options: ["The common cold", "Mad cow disease", "Chicken pox", "Malaria"],
+                                  correctAnswer: "Mad cow disease"
+                               },
+                             {
+                                  question: "What do prions form in the brain?",
+                                   options: ["Soluble deposits", "Insoluble deposits", "Spikes", "Envelopes"],
+                                   correctAnswer: "Insoluble deposits"
+                               }
+
+        ];
+
+
+
+       let currentQuestions = [...questions]; // Copy of original questions
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            }
+        }
+
+        function createQuiz() {
+            shuffleArray(currentQuestions); // Shuffle the copied array
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = ''; // Clear existing content
+            currentQuestions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+                questionDiv.innerHTML = `<p>${index + 1}. ${question.question}</p>`;
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('options');
+
+                question.options.forEach(option => {
+                    optionsDiv.innerHTML += `
+                        <label>
+                            <input type="radio" name="question${index}" value="${option}">
+                            ${option}
+                        </label>
+                    `;
+                });
+                questionDiv.appendChild(optionsDiv);
+                quizContainer.appendChild(questionDiv);
+            });
+
+        }
+
+        function showResults() {
+          let score = 0;
+          currentQuestions.forEach((question, index) => {
+            const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+            const questionDiv = document.querySelectorAll('.question')[index];
+
+              if(selectedOption) {
+              const userAnswer = selectedOption.value;
+              const correctAnswer = question.correctAnswer;
+              const optionsLabels = questionDiv.querySelectorAll('label');
+
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    questionDiv.classList.add('correct-answer');
+                    selectedOption.parentElement.classList.add('correct-answer');
+                } else {
+                    questionDiv.classList.add('wrong-answer');
+                    selectedOption.parentElement.classList.add('wrong-answer');
+
+                    optionsLabels.forEach(label => {
+                    if(label.textContent.trim() === correctAnswer){
+                       label.classList.add('correct-answer');
+                      }
+
+                    });
+
+
+                }
+               } else {
+                const optionsLabels = questionDiv.querySelectorAll('label');
+
+                optionsLabels.forEach(label => {
+                 if(label.textContent.trim() === question.correctAnswer){
+                    label.classList.add('correct-answer');
+                    }
+
+                });
+
+
+              questionDiv.classList.add('wrong-answer');
+
+              }
+            });
+
+           document.getElementById('score').innerHTML = `Your Score: ${score} out of ${currentQuestions.length}`;
+            }
+
+            createQuiz(); // Initialize the quiz when the page loads
+
+    </script>
+</body>
+</html>
